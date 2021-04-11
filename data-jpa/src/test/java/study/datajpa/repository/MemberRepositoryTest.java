@@ -82,7 +82,7 @@ public class MemberRepositoryTest {
 
         List<Member> result = memberRepository.findByUsername("AAA");
         Member findMember = result.get(0);
-        assertThat(findMember).isEqualTo();
+        assertThat(findMember).isEqualTo(m1);
 
     }
 }
