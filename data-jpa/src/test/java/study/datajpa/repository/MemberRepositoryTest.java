@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.transaction.annotation.Transactional;
 import study.datajpa.dto.MemberDto;
@@ -156,9 +157,9 @@ public class MemberRepositoryTest {
         PageRequest pageRequest = PageRequest.of(0, 3, Sort.by(Sort.Direction.DESC, "username"));
 
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
+//        Slice<Member> page = memberRepository.findByAge(age, pageRequest); // Page 타입 보다 페이지를 +1 해서 조회, 토탈 카운트 안됨
 
         List<Member> content = page.getContent();
-        long totalElements = page.getTotalElements();
 
         assertThat(content.size()).isEqualTo(3);
         assertThat(page.getTotalElements()).isEqualTo(5);
