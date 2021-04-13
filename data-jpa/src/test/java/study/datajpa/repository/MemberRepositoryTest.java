@@ -159,6 +159,8 @@ public class MemberRepositoryTest {
         Page<Member> page = memberRepository.findByAge(age, pageRequest);
 //        Slice<Member> page = memberRepository.findByAge(age, pageRequest); // Page 타입 보다 페이지를 +1 해서 조회, 토탈 카운트 안됨
 
+        Page<MemberDto> toMap = page.map(member -> new MemberDto(member.getId(), member.getUsername(), null));
+
         List<Member> content = page.getContent();
 
         assertThat(content.size()).isEqualTo(3);
